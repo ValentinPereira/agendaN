@@ -1,0 +1,44 @@
+﻿@model agenda.Models.appointment
+@{
+    ViewBag.Title = "Rendez-vous";
+}
+<h2 class="text-center">Formulaire de rendez-vous</h2>
+@using (Html.BeginForm("GoAppointment", "Appointment", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
+                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.dateHour, "", new { @class = "text-danger" })
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-5 mb-2">
+                <div class="form-group">
+                    <label for="sujet">Sujet</label>
+                    <textarea class="form-control" id="subject" rows="3"></textarea>
+                </div>
+                @Html.ValidationMessageFor(model => model.subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <button class="space btn btn-outline-dark" type="submit" value="submit">Valider</button>
+            </div>
+        </div>
+    </div>
+    @ViewBag.MessageSuccess
+}
+<div>
+    @Html.ActionLink("retour index", "index")
+</div>
+

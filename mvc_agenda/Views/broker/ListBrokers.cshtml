@@ -1,0 +1,56 @@
+﻿@model IEnumerable<agenda.Models.broker>
+
+@{
+    ViewBag.Title = "Liste des courtier";
+}
+
+<h2>Liste des courtiers</h2>
+
+<p>
+    @Html.ActionLink("Liste courtier", "ListBrokers", "broker") @*Nom, Methode, Controller*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname) @*Affichage du nom de colonne contenu dans la table*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {@*Boucle qui récupere le contenu de la table*@
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastname)  @*Affiche du prénom*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "ProfilBroker", "Broker", new { id = item.idBroker }, null) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idBroker })
+            @Html.ActionLink("Add", "Addappointment", "appointment", new { id = item.id }) |
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("retour index", "index")
+</div>
